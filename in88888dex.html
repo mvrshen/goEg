@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="https://i.ibb.co/CstFc6q7/5326-removebg-preview.png">
+<title>Egypt Go – مصر جو</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&display=swap">
+<style>
+:root{--bg:#fbf8f1;--card:#fff;--ink:#1d1b18;--mute:#5d574d;--gold:#b8923f;--chip:#f6e8cf;--chipb:#e3c88f;--shadow:0 8px 28px rgba(120,90,30,.14)}
+@media (prefers-color-scheme:dark){:root{--bg:#1a1712;--card:#26221b;--ink:#f3ede0;--mute:#b9b09d;--chip:#3a3123;--chipb:#6b5630;--shadow:0 8px 28px rgba(0,0,0,.4)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+.hs{position:fixed;top:0;bottom:0;width:30vw;max-width:340px;overflow:hidden;z-index:-1;pointer-events:none;color:#c9a24a;opacity:.6;font-family:"Noto Sans Egyptian Hieroglyphs",sans-serif;font-size:30px}
+.hs.L{left:0;-webkit-mask-image:linear-gradient(to right,#000,transparent);mask-image:linear-gradient(to right,#000,transparent)}
+.hs.R{right:0;-webkit-mask-image:linear-gradient(to left,#000,transparent);mask-image:linear-gradient(to left,#000,transparent)}
+.hs .in{display:flex;will-change:transform}
+.hs .c{width:48px;line-height:48px;white-space:pre;text-align:center;flex:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 56px 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:28px 0}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.logo b{display:block;font:400 30px Georgia,serif}.logo small{display:block;font-size:16px;color:var(--mute)}
+nav a{color:var(--ink);text-decoration:none;font-size:17px;margin-inline-start:14px}
+.cur{margin-inline-start:14px;background:var(--card);color:var(--ink);border:1.5px solid var(--gold);border-radius:999px;padding:6px 10px;font-size:15px;cursor:pointer}
+.gear{background:none;border:0;cursor:pointer;color:var(--ink);margin-inline-start:12px;vertical-align:middle;padding:4px}.gear:hover,nav a:hover{color:var(--gold)}
+.search{max-width:780px;margin:44px auto 0;display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid rgba(184,146,63,.3);border-radius:999px;padding:0 28px;height:78px;box-shadow:var(--shadow)}
+.search input{flex:1;border:0;outline:0;background:none;font-size:24px;color:var(--ink)}
+[hidden]{display:none!important}
+.mq{margin:40px 0;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
+.mqt{display:flex;width:max-content;animation:mq 30s linear infinite}
+.gi{width:26px;height:26px;object-fit:contain;filter:brightness(0) saturate(100%) invert(45%) sepia(44%) saturate(715%) hue-rotate(3deg) brightness(127%) contrast(65%)}
+.chip.on .gi{filter:brightness(0) invert(1)}
+.mqh{display:flex;flex:none}
+@keyframes mq{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.chip{flex:none;display:flex;align-items:center;gap:12px;margin-right:18px;background:var(--card);color:var(--ink);border:1.5px solid var(--gold);border-radius:999px;padding:8px 26px 8px 8px;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(184,146,63,.18)}
+.ci{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;color:var(--gold);background:linear-gradient(145deg,rgba(230,201,138,.35),rgba(184,146,63,.12));border:1px solid rgba(184,146,63,.5)}
+.chip.on{background:linear-gradient(135deg,#d9b866,#b8923f);color:#fff}
+.chip.on .ci{color:#fff;background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.6)}
+@media (prefers-reduced-motion:reduce){.mqt{animation:none}.mq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}}
+h2.t{font-size:34px;margin:50px 0 6px}.sub{color:var(--mute);margin:0 0 22px;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.card{background:var(--card);border-radius:22px;padding:14px 14px 20px;box-shadow:var(--shadow);text-align:center;cursor:pointer;transition:transform .2s}.card:hover{transform:translateY(-4px)}
+.ph{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#e6c98a,#b8923f)}
+.ph img{display:block;width:100%;aspect-ratio:1.46;object-fit:cover}
+.badge{position:absolute;top:12px;left:12px;background:rgba(214,170,90,.92);color:#fff;border-radius:12px;padding:7px 12px;font-size:15px}
+.card h3{font-size:28px;margin:18px 0 8px;font-weight:500}.meta{color:var(--mute);font-size:16px;margin:0 0 16px}.star{color:var(--gold)}
+.price{display:flex;justify-content:center;align-items:center;gap:10px;font-size:16px}
+.bm{background:none;border:0;cursor:pointer;padding:2px;color:var(--ink)}.bm.on svg{fill:var(--gold);stroke:var(--gold)}
+.empty{text-align:center;color:var(--mute);padding:40px 0;grid-column:1/-1;font-size:19px}
+footer{text-align:center;color:var(--mute);font-size:15px;margin-top:44px}footer a{color:inherit;text-decoration:none}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}.ov[hidden]{display:none}
+.box{background:var(--card);color:var(--ink);border-radius:18px;padding:22px;width:100%;max-width:520px;max-height:90vh;overflow:auto;box-shadow:var(--shadow)}
+.box.big{padding:0;max-width:760px}
+.box h3{margin:0 0 12px;font-size:22px}.box h4{margin:18px 0 8px;color:var(--gold)}
+.box input:not([type=checkbox]),.box textarea{width:100%;padding:11px 12px;margin:0 0 8px;border:1px solid var(--chipb);border-radius:10px;background:transparent;color:var(--ink);font:inherit;font-size:16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}.row input:not([type=checkbox]){flex:1;min-width:90px;margin:0}
+.btn{background:var(--gold);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-size:16px;cursor:pointer}.btn.ghost{background:var(--chip);color:var(--ink)}.btn.sm{padding:6px 12px;font-size:14px}
+.tag{background:var(--chip);border-radius:999px;padding:5px 12px;font-size:15px}.tag button{border:0;background:none;color:inherit;cursor:pointer;font-size:16px}
+.err{color:#c0392b;margin:0 0 8px;min-height:1em}.note{background:var(--chip);border-radius:10px;padding:10px;font-size:14px;margin-bottom:8px}
+.tr{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--chip)}
+.sl{position:relative;aspect-ratio:1.7;background:linear-gradient(135deg,#e6c98a,#b8923f);border-radius:18px 18px 0 0;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.slt{display:flex;height:100%;transition:transform .5s ease;will-change:transform}
+.sl.drag{cursor:grabbing}.sl.drag .slt{transition:none}
+.slt img{flex:none;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.ar{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.4);color:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:24px;cursor:pointer}.ar.l{left:10px}.ar.r{right:10px}
+.dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:7px}.dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer}.dots i.on{background:#fff}
+.x{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;font-size:22px;cursor:pointer;z-index:2}
+.bd{padding:20px 24px 26px}.bd h2{margin:0 0 6px;font-size:30px}.bd p{line-height:1.6}.pr2{margin:14px 0;font-size:18px}
+.wa{width:100%;background:#25d366;font-size:18px;padding:14px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.wrap{padding:0 22px 24px}nav a{font-size:15px}.search{height:62px}.search input{font-size:18px}.logo b{font-size:24px}header{flex-wrap:wrap;gap:10px}.hs{opacity:.4}}
+@media (max-width:520px){.chip{padding:6px 18px 6px 6px;font-size:17px}.ci{width:38px;height:38px}}
+.hv{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:2.5;min-height:280px;box-shadow:var(--shadow);margin:0 0 10px;background:linear-gradient(135deg,#e6c98a,#b8923f)}
+.hv .sd{position:absolute;inset:0;opacity:0;transition:opacity .9s;pointer-events:none}.hv .sd.on{opacity:1;pointer-events:auto}
+.hv .sd img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hv .sd::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.05) 70%)}
+.hv .tx{position:absolute;z-index:1;left:40px;bottom:44px;max-width:520px;color:#fff}
+.hv small{letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:#f1d79a}
+.hv h2{font:400 44px Georgia,serif;margin:6px 0 10px}
+.hv p{margin:0 0 18px;line-height:1.5;font-size:17px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hv .go{background:#fff;color:#1d1b18;border:0;border-radius:999px;padding:12px 26px;font-size:16px;cursor:pointer}
+.hv .ct{position:absolute;z-index:2;right:26px;bottom:22px;color:#fff;display:flex;gap:8px;align-items:center;font-size:15px}
+.hv .ct span{margin-right:6px}.hv .ct i{width:26px;height:3px;background:rgba(255,255,255,.4);cursor:pointer;border-radius:2px}.hv .ct i.on{background:#fff}
+.ints{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.int{position:relative;aspect-ratio:1.2;border:0;border-radius:22px;background-size:cover;background-position:center;background-color:#b8923f;color:#fff;cursor:pointer;text-align:left;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;box-shadow:var(--shadow)}
+.int b{font:400 26px Georgia,serif}.int small{font-size:14px;opacity:.9}
+.ci2{position:absolute;top:16px;left:16px;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.3);border:1px solid rgba(241,215,154,.7);color:#f1d79a}
+.mapbox{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:18px;max-width:640px;margin:0 auto}.mapbox svg{width:100%;height:auto;display:block}
+.eg{fill:var(--chip);stroke:var(--gold);stroke-width:1.5;stroke-linejoin:round}.nl{fill:none;stroke:var(--gold);stroke-width:2;opacity:.7}
+.pin{cursor:pointer;outline:none}.pr{fill:rgba(184,146,63,.25)}.pd{fill:var(--gold);stroke:#fff;stroke-width:1.5}.pin:hover .pr,.pin:focus .pr{fill:rgba(184,146,63,.5)}
+.pin text{font-size:12px;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:3px}
+@media (max-width:900px){.hv{aspect-ratio:1.1}.hv .tx{left:20px;right:20px;bottom:50px}.hv h2{font-size:30px}.hv p{font-size:15px;-webkit-line-clamp:3}}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
+.vh{position:relative;border-radius:28px;overflow:hidden;height:68vh;min-height:420px;max-height:680px;margin-bottom:6px;box-shadow:var(--shadow);background:linear-gradient(135deg,#e6c98a,#b8923f);color:#fff}
+.vm{position:absolute;inset:0;overflow:hidden}
+.vm iframe[data-fit]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:0;pointer-events:none}
+.vm iframe:not([data-fit]){position:absolute;inset:0;width:100%;height:100%;border:0}
+.vm video,.vm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.vm .kb{animation:kb 20s ease-in-out infinite alternate}
+.vo{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,.08) 65%);pointer-events:none}
+.vt{position:absolute;z-index:2;left:44px;right:44px;bottom:48px;max-width:660px}
+.vt small{display:block;letter-spacing:.16em;text-transform:uppercase;font-size:13px;color:#f1d79a}
+.vt h1{font:400 clamp(38px,6vw,68px)/1.05 Georgia,serif;margin:8px 0 12px}.vt p{font-size:18px;line-height:1.55;margin:0 0 22px;max-width:520px}
+.vt>*{animation:up .9s both}.vt h1{animation-delay:.15s}.vt p{animation-delay:.3s}.vt .go2{animation-delay:.45s}
+.go2{background:var(--gold);color:#fff;border:0;border-radius:999px;padding:14px 30px;font-size:17px;cursor:pointer}
+.snd{position:absolute;z-index:3;right:22px;bottom:22px;background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:9px 18px;cursor:pointer;font-size:14px}
+.ar2{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.6);width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
+.hv .sd.on .tx>*{animation:up .8s both}.hv .sd.on .tx>*:nth-child(2){animation-delay:.12s}.hv .sd.on .tx>*:nth-child(3){animation-delay:.24s}.hv .sd.on .tx>*:nth-child(4){animation-delay:.36s}
+.stories{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px}
+.st{background:none;border:0;padding:0;text-align:left;cursor:pointer;color:var(--ink);font:inherit}
+.st .im{aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#e6c98a,#b8923f);box-shadow:var(--shadow)}
+.st img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}.st:hover img{transform:scale(1.06)}
+.st small{display:block;margin:14px 0 4px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+.st h3{margin:0 0 6px;font:400 22px/1.25 Georgia,serif}
+.st p{margin:0 0 8px;color:var(--mute);font-size:15px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.st u{color:var(--gold);font-size:14px;text-decoration:none;font-weight:600}
+.bd small.stg{color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+.box select{width:100%;padding:11px 12px;margin:0 0 8px;border:1px solid var(--chipb);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;font-size:16px}
+@media (max-width:900px){.vt{left:20px;right:20px;bottom:36px}.vt p{font-size:16px}.vh{min-height:380px}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}.vm .kb,.vt>*,.hv .sd.on .tx>*{animation:none}}
+
+/* Egypt Go Plus */
+header{position:sticky;top:10px;z-index:40;margin:10px 0 12px;padding:14px 18px;border:1px solid rgba(255,255,255,.28);border-radius:20px;background:rgba(255,255,255,.38);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);box-shadow:0 10px 32px rgba(60,45,20,.10);transition:transform .35s ease,opacity .35s ease,filter .35s ease}
+@media(prefers-color-scheme:dark){header{background:rgba(38,34,27,.42);border-color:rgba(255,255,255,.10)}}
+header.header-hidden{transform:translateY(calc(-100% - 24px));opacity:0;pointer-events:none;filter:blur(3px)}
+.guide-box{margin:16px 0 10px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,rgba(184,146,63,.10),rgba(184,146,63,.03));border:1px solid rgba(184,146,63,.28)}
+.guide-box b{font-size:17px}.guide-price{margin-top:5px;color:var(--mute);font-size:15px}.guide-pill{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:5px 10px;border-radius:999px;background:var(--chip);color:var(--ink);font-size:13px}
+@media(max-width:900px){header{top:6px;margin:6px 0 10px;padding:10px 12px;border-radius:16px}}
+
+/* Cafés & Activities */
+.places-section{margin:54px 0 46px}
+.places-heading{text-align:center;margin-bottom:22px}
+.places-heading span{display:block;color:var(--mute);font-size:14px;letter-spacing:.14em}
+.places-heading h2{font-size:clamp(34px,5vw,48px);margin:3px 0 4px;letter-spacing:-.04em}
+.places-heading p{margin:0;color:var(--mute);font-size:16px}
+.place-filters{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:0 0 24px}
+.place-filter{border:1px solid var(--chipb);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 16px;cursor:pointer;font-size:14px}
+.place-filter.on{background:var(--gold);border-color:var(--gold);color:#fff}
+.places-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.place-card{background:var(--card);border:1px solid color-mix(in srgb,var(--gold) 13%,transparent);border-radius:22px;overflow:hidden;box-shadow:var(--shadow2);transition:.25s}
+.place-card:hover{transform:translateY(-5px);box-shadow:0 24px 55px rgba(75,55,20,.17)}
+.place-photo{height:210px;background:var(--chip);position:relative;overflow:hidden}
+.place-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.place-card:hover .place-photo img{transform:scale(1.045)}
+.place-type{position:absolute;left:13px;top:13px;background:rgba(0,0,0,.55);color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
+.place-body{padding:16px}
+.place-body h3{margin:0 0 5px;font-size:23px}
+.place-location{margin:0 0 9px;color:var(--mute);font-size:14px}
+.place-desc{margin:0 0 12px;color:var(--mute);font-size:15px;line-height:1.5;min-height:45px}
+.place-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.place-price{font-weight:700;color:var(--gold)}
+.place-wa{background:#25d366;color:#fff;border:0;border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:650}
+.place-wa:hover{filter:brightness(1.04);transform:translateY(-1px)}
+@media(max-width:900px){.places-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.places-grid{grid-template-columns:1fr}.place-photo{height:220px}.place-bottom{align-items:stretch;flex-direction:column}.place-wa{width:100%}}
+.logo .lg{height:76px;width:auto;max-width:170px;object-fit:contain;display:block}
+@media(max-width:900px){.logo .lg{height:56px}}
+#s1,#s2{scroll-margin-top:110px}
+.pg{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin:34px 0 0}
+.pgb{min-width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gold);background:var(--card);color:var(--ink);font-size:17px;cursor:pointer}
+.pgb.on{background:var(--gold);color:#fff}.pgb:disabled{opacity:.35;cursor:default}
+.pgi{width:100%;text-align:center;color:var(--mute);font-size:14px;margin-top:4px}
+.bk{margin:16px 0;padding:16px;border:1px solid rgba(184,146,63,.3);border-radius:16px;background:linear-gradient(135deg,rgba(184,146,63,.08),rgba(184,146,63,.02))}
+.bk h4{margin:0 0 8px;color:var(--gold);font-size:17px}.bk-sub{margin:12px 0 2px;color:var(--mute);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.bk-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--chip)}
+.st2{display:flex;align-items:center;gap:12px}.st2 button{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);background:var(--card);color:var(--ink);font-size:18px;cursor:pointer}.st2 b{min-width:26px;text-align:center;font-size:17px}
+.bk-x{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;font-size:15px}.bk-x small{color:var(--mute);margin-left:auto;text-align:right}
+.bk-t{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;font-size:17px}.bk-t b{font-size:26px;color:var(--gold)}
+.bk-n{color:var(--mute);font-size:13px;margin:6px 0 0;line-height:1.5}
+.row select{flex:1;min-width:110px;margin:0}
+.act2{display:flex;gap:10px;margin-top:14px}.act2 .btn{padding:14px;font-size:17px}.act2 .dt{flex:1;background:var(--card);color:var(--ink);border:1.5px solid var(--gold)}.act2 .wa{flex:1.5;width:auto}
+.bk-wrap:not([hidden]){animation:up .5s both}
+.place-btns{display:flex;gap:8px;flex-wrap:wrap}
+.place-dt{background:var(--card);color:var(--ink);border:1.5px solid var(--gold);border-radius:999px;padding:9px 14px;cursor:pointer;font-weight:650}.place-dt:hover{background:var(--chip)}
+.pd-text{white-space:pre-line}
+.pinfo{margin:14px 0;border:1px solid rgba(184,146,63,.3);border-radius:14px;overflow:hidden}
+.pi-row{display:flex;justify-content:space-between;gap:16px;padding:10px 14px;border-bottom:1px solid var(--chip);font-size:15px}.pi-row:last-child{border-bottom:0}
+.pi-row span{color:var(--mute)}.pi-row b{font-weight:600;text-align:right}
+@media(max-width:620px){.place-btns{width:100%}.place-btns button{flex:1}}
+</style></head><body>
+<div class="hs L" id="hl"></div><div class="hs R" id="hr"></div>
+<div class="wrap">
+<header id="siteHeader">
+<a class="logo" href="#"><img class="lg" src="https://i.ibb.co/CstFc6q7/5326-removebg-preview.png" alt="Egypt Go logo" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="34" height="64" viewBox="0 0 34 64" fill="none" stroke="#b8923f" stroke-width="2.4"><ellipse cx="17" cy="13" rx="8" ry="11"/><path d="M17 24v38M4 34h26"/></svg><span><b>Egypt Go</b><small>مصر جو</small></span></a>
+<nav><select id="cur" class="cur" aria-label="Currency"></select><button class="gear" id="gear" aria-label="Developer mode"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></button></nav>
+</header>
+<section class="vh rv" id="vh" hidden></section>
+<label class="search rv"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#d29a3a" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" placeholder="Where to in Egypt?" autocomplete="off" enterkeyhint="search" aria-label="Search destinations in Egypt"></label>
+<div class="mq" id="mq"></div>
+<section class="events-section" id="eventsSection"><div class="events-heading"><span>EVENTS</span><h2>Live Egypt</h2></div><div class="events-track" id="eventsTrack" aria-label="Egypt events"></div></section>
+<section class="places-section" id="placesSection">
+  <div class="places-heading">
+    <span>DISCOVER</span>
+    <h2>Cafés & Activities</h2>
+    <p>Find cafés, entertainment and things to do around Egypt.</p>
+  </div>
+  <div class="place-filters" id="placeFilters"></div>
+  <div class="places-grid" id="placesGrid"></div>
+</section>
+
+<section class="hv" id="hv" hidden></section>
+<section id="s1"><h2 class="t rv">Trending destinations</h2><p class="sub rv">Personalized for you</p><div class="grid" id="g1"></div></section>
+<section id="s2"><h2 class="t rv">All destinations</h2><div class="grid" id="g2"></div></section>
+<div class="empty" id="none" hidden>مفيش نتائج دلوقتي — جرّب بحث تاني</div>
+<nav class="pg" id="pg" hidden aria-label="Trips pages"></nav>
+<section id="s4" hidden><h2 class="t rv">Your dream trip starts here</h2><p class="sub rv">Tap a pin to see what makes each destination special.</p><div class="mapbox rv" id="mapbox"></div></section>
+<section id="s5" hidden><h2 class="t rv">Your next bold move? Explore Egypt your way</h2><div class="stories" id="stories"></div></section>
+<section id="s3" hidden><h2 class="t rv">Explore by interest</h2><div class="ints" id="ints"></div></section>
+<footer class="rv">Egypt Go · AI-powered travel for Egypt · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">About</a></footer>
+</div>
+<div class="ov" id="ov" hidden><div class="box" id="box"></div></div>
+
+<style id="masrgo-polish">
+:root{
+  --gold:#b8923f;
+  --gold2:#d7b66a;
+  --gold3:#f0dfb5;
+  --ring:rgba(184,146,63,.28);
+  --shadow2:0 18px 50px rgba(75,55,20,.13);
+}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;line-height:1.45}
+button,input,select,textarea{font-family:inherit}
+button,.card,.int,.st,.go,.go2,.btn,.gear,.chip,.bm{ -webkit-tap-highlight-color:transparent }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid var(--ring);outline-offset:3px;
+}
+header{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid color-mix(in srgb,var(--gold) 12%,transparent);
+}
+.logo{transition:transform .2s ease}.logo:hover{transform:translateY(-1px)}
+nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+nav a{padding:8px 9px;border-radius:10px;transition:.2s}
+nav a:hover{background:var(--chip)}
+.search{
+  position:relative;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  margin-top:34px;
+}
+.search:focus-within{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 14px 38px rgba(120,90,30,.18)}
+.search input::placeholder{color:var(--mute);opacity:.7}
+.grid{gap:24px}
+.card{
+  padding:10px 10px 18px;border:1px solid color-mix(in srgb,var(--gold) 10%,transparent);
+  box-shadow:var(--shadow2);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.card:hover{transform:translateY(-7px);box-shadow:0 24px 55px rgba(75,55,20,.17);border-color:color-mix(in srgb,var(--gold) 32%,transparent)}
+.ph img{transition:transform .5s ease}.card:hover .ph img{transform:scale(1.035)}
+.card h3{letter-spacing:-.02em}
+.bm{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;transition:.2s}
+.bm:hover{background:var(--chip);transform:scale(1.06)}
+.hv,.vh,.mapbox,.int,.st .im{box-shadow:var(--shadow2)}
+.hv{margin-top:8px}
+.hv .go,.go2,.btn{transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.hv .go:hover,.go2:hover,.btn:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(75,55,20,.18);filter:brightness(1.04)}
+.chip{transition:transform .18s ease,box-shadow .18s ease}
+.chip:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(184,146,63,.2)}
+.int{transition:transform .25s ease,box-shadow .25s ease,filter .25s ease}
+.int:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 22px 45px rgba(75,55,20,.18);filter:saturate(1.05)}
+.st{transition:transform .22s ease}.st:hover{transform:translateY(-4px)}
+.st u{display:inline-block;margin-top:2px}
+.ov{backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.box{border:1px solid color-mix(in srgb,var(--gold) 16%,transparent);box-shadow:0 30px 90px rgba(0,0,0,.24)}
+.x{transition:transform .18s ease,background .18s ease}.x:hover{transform:rotate(90deg);background:rgba(0,0,0,.7)}
+.empty{background:var(--chip);border-radius:18px;margin-top:24px}
+footer{padding-top:18px;border-top:1px solid color-mix(in srgb,var(--gold) 12%,transparent)}
+@media (min-width:901px){
+  .wrap{padding-left:42px;padding-right:42px}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  header{padding:14px 0}
+  nav{justify-content:flex-end}
+  .wrap{padding-left:16px;padding-right:16px}
+  .search{margin-top:22px}
+  h2.t{font-size:29px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .card h3{font-size:22px}.price{font-size:14px}
+  .vh{border-radius:20px}
+}
+@media (max-width:620px){
+  .logo b{font-size:22px}.logo small{font-size:13px}.logo svg{width:28px;height:54px}
+  nav a{font-size:13px;padding:6px 5px}.cur{font-size:13px;margin-inline-start:4px}
+  .grid{grid-template-columns:1fr}
+  .card{border-radius:18px}
+  .search{height:58px;padding:0 17px}.search input{font-size:17px}
+  .search svg{width:28px;height:28px}
+  .hv{border-radius:20px;min-height:330px}
+  .hv .tx{left:18px;right:18px;bottom:40px}.hv h2{font-size:29px}
+  .vt{left:18px;right:18px;bottom:30px}.vt h1{font-size:40px}
+  .vh{min-height:390px;height:70vh}
+  .bd{padding:18px}.bd h2{font-size:26px}
+  .sl{aspect-ratio:1.35}
+}
+/* Live Egypt events carousel */
+.events-section{margin:42px -56px 46px;overflow:hidden}
+.events-heading{text-align:center;margin:0 0 24px}
+.events-heading span{display:block;color:var(--mute);font-size:15px;letter-spacing:.12em}
+.events-heading h2{font-size:clamp(34px,5vw,48px);font-weight:650;letter-spacing:-.04em;margin:2px 0 0;color:var(--ink)}
+.events-track{display:flex;gap:18px;overflow-x:auto;padding:0 max(22px,calc((100vw - 1180px)/2)) 16px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.events-track::-webkit-scrollbar{display:none}
+.event-card{flex:0 0 clamp(260px,36vw,370px);scroll-snap-align:center;color:var(--ink);text-align:left}
+.event-photo{height:clamp(190px,28vw,290px);position:relative;border-radius:25px;overflow:hidden;background:var(--chip);box-shadow:var(--shadow2)}
+.event-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.event-card:hover .event-photo img{transform:scale(1.04)}
+.event-label{position:absolute;top:18px;left:18px;background:#34734c;color:white;border-radius:7px;padding:5px 12px;font-weight:650;font-size:14px;max-width:70%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.event-fav{position:absolute;right:16px;top:16px;width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:#075b99;font-size:27px;line-height:1;cursor:pointer;box-shadow:0 3px 12px #0002}
+.event-title{font-size:clamp(21px,2.5vw,27px);font-weight:650;line-height:1.2;margin:16px 2px 7px;min-height:2.4em}
+.event-location{color:var(--mute);font-size:15px;margin:0 2px 18px;min-height:1.5em}
+.event-location:before{content:"●";font-size:12px;margin-right:9px;color:#7b8287}
+.event-more{display:block;margin:0 auto;background:#075b99;color:white;border:0;border-radius:999px;padding:13px 26px;font-size:16px;font-weight:650;cursor:pointer}
+.event-empty{padding:16px;text-align:center;color:var(--mute)}
+@media(max-width:900px){.events-section{margin-left:-16px;margin-right:-16px}}
+@media(max-width:620px){.events-section{margin-top:32px}.events-track{gap:14px;padding-left:16px;padding-right:16px}.event-card{flex-basis:78vw}.event-photo{height:230px}.events-heading{margin-bottom:18px}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+/* ===== Bigger, phone-friendly trip cards + banner ===== */
+.card{padding:12px 12px 16px;text-align:left;display:flex;flex-direction:column}
+.card .ph{border-radius:18px}.card .ph img{aspect-ratio:1.4}
+.card .ph .bm{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);color:#1d1b18;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:0;border:0;display:grid;place-items:center}
+.card .ph .bm.on{color:var(--gold)}
+.cb{padding:14px 6px 2px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:28px;margin:0 0 6px;font-weight:500;line-height:1.15}
+.card .meta{font-size:16px;line-height:1.45;margin:0 0 14px}.card .meta small{font-size:inherit}
+.cpr{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.cpr small{display:block;color:var(--mute);font-size:13px}.cpr b{font-size:26px;color:var(--ink);margin-right:5px}.cpr span{color:var(--mute);font-size:15px}
+.cpr .free{color:#2f8f5b;font-size:14px;font-weight:600;background:rgba(47,143,91,.1);border-radius:999px;padding:6px 12px}
+.ccta{margin-top:auto;padding-top:0}
+.cb .ccta{margin-top:14px;display:flex;justify-content:center;align-items:center;gap:8px;background:var(--gold);color:#fff;border-radius:14px;padding:13px 16px;font-size:16px;font-weight:600}
+@media (max-width:900px){
+  .grid{gap:22px}
+  .card{border-radius:24px;padding:12px 12px 16px}
+  .card .ph img{aspect-ratio:1.18}
+  .card h3{font-size:30px}
+  .card .meta{font-size:17px}
+  .cpr b{font-size:30px}.cpr span{font-size:16px}.cpr .free{font-size:15px;padding:7px 13px}
+  .cb .ccta{padding:16px;font-size:18px;border-radius:16px;margin-top:16px}
+  .badge{font-size:15px;padding:8px 13px}
+}
+@media (max-width:520px){
+  .wrap{padding-left:12px;padding-right:12px}
+  .hv{border-radius:22px;aspect-ratio:auto;height:clamp(440px,72vh,560px);min-height:0}
+  .hv .tx{left:20px;right:20px;bottom:86px}
+  .hv small{font-size:13px}.hv h2{font-size:38px;line-height:1.05}
+  .hv p{font-size:16px;-webkit-line-clamp:3;margin-bottom:16px}
+  .hv .go{width:100%;padding:15px 20px;font-size:17px;font-weight:600}
+  .hv .ct{left:16px;right:16px;bottom:18px;justify-content:center;gap:10px}
+  .hv .ct .ar2{width:44px;height:44px;font-size:24px}
+  .hv .ct i{width:20px}
+}
+.place-card{cursor:pointer}.place-card:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media (max-width:620px){
+  .place-body{padding:18px}.place-body h3{font-size:26px}.place-desc{font-size:16px}
+  .place-dt,.place-wa{padding:14px 16px;font-size:16px;width:100%}.place-btns{width:100%;flex-direction:column}
+}
+</style>
+
+<script>
+const DEFAULT={"whatsapp": "", "catIcons": {}, "currencies": [{"code": "EGP", "symbol": "EGP", "rate": 1}, {"code": "USD", "symbol": "$", "rate": 55}, {"code": "EUR", "symbol": "€", "rate": 62}], "categories": ["Historical", "Beach", "Desert"], "trips": [{"id": "luxor", "name": "Luxor", "desc": "Temples · Nile Valley", "about": "Home to Karnak and Luxor Temples on the banks of the Nile — one of the richest ancient sites in the world.", "rating": 4.9, "reviews": 1240, "price": 1800, "guide": {"enabled": false, "name": "", "price": 0, "unit": "per day"}, "categories": ["Historical"], "images": ["https://commons.wikimedia.org/wiki/Special:FilePath/Luxor_Temple_at_night%2C_Luxor%2C_Egypt.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Luxor_Temple_R15.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Grounds%2C_Karnak_Temple%2C_Luxor%2C_LG%2C_EGY_%2848009651442%29.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Luxor%2C_Luxor_Temple%2C_sphinx_alley_at_night%2C_Egypt%2C_Oct_2004.jpg?width=1200"], "lat": 25.7, "lng": 32.65}, {"id": "aswan", "name": "Aswan", "desc": "River · Nubian Culture", "about": "A calm Nile city with Philae Temple, felucca rides and Nubian culture.", "rating": 4.8, "reviews": 986, "price": 1600, "guide": {"enabled": false, "name": "", "price": 0, "unit": "per day"}, "categories": ["Historical"], "images": ["https://commons.wikimedia.org/wiki/Special:FilePath/Philae_Temple_R03.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Philae_Temple_R01.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Temple_of_Philae_02.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Philae%2C_seen_from_the_water%2C_Aswan%2C_Egypt%2C_Oct_2004.jpg?width=1200"], "lat": 24.09, "lng": 32.9}, {"id": "siwa", "name": "Siwa", "desc": "Oasis · Desert", "about": "A remote oasis in the Western Desert with palm groves, salt lakes and the old Shali fortress.", "rating": 4.9, "reviews": 742, "price": 2000, "guide": {"enabled": false, "name": "", "price": 0, "unit": "per day"}, "categories": ["Desert"], "images": ["https://commons.wikimedia.org/wiki/Special:FilePath/Palms_of_the_Siwa_Oasis.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Old_Mosque_of_Shali_01.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/The_temple_of_the_god_Amun_in_Siwa_oasis.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Siwa_Oasis%2C_Houses_in_the_desert%2C_Egypt.jpg?width=1200"], "lat": 29.2, "lng": 25.52}, {"id": "giza", "name": "Giza & Cairo", "desc": "Pyramids · Sphinx", "about": "See the Great Pyramids and the Sphinx, then explore Cairo's museums and old streets.", "rating": 4.9, "reviews": 2310, "price": 2200, "guide": {"enabled": false, "name": "", "price": 0, "unit": "per day"}, "categories": ["Historical"], "images": ["https://commons.wikimedia.org/wiki/Special:FilePath/Giza_Pyramid_Complex_%2831956421147%29.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Giza_2015-11-10_Sphinx_05.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Giza_pyramid_complex_2010_4.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Giza_Pyramid_Complex_%2839932845093%29.jpg?width=1200"], "lat": 29.98, "lng": 31.13}, {"id": "alexandria", "name": "Alexandria", "desc": "Mediterranean · Citadel", "about": "Egypt's Mediterranean city: the Qaitbay Citadel, the seafront Corniche and fresh seafood.", "rating": 4.7, "reviews": 654, "price": 1500, "guide": {"enabled": false, "name": "", "price": 0, "unit": "per day"}, "categories": ["Historical", "Beach"], "images": ["https://commons.wikimedia.org/wiki/Special:FilePath/Citadel_of_Qaitbay%2C_Alexandria%2C_Egypt.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Citadel_of_Qaitbay%2C_Court%2C_Alexandria%2C_Egypt.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_archer10_%28Dennis%29_-_Egypt-14A-077.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/School_trip_to_the_Citadel_of_Qaitbay_in_Alexandria.jpg?width=1200"], "lat": 31.2, "lng": 29.92}, {"id": "hurghada", "name": "Hurghada", "desc": "Red Sea · Diving", "about": "A Red Sea resort city known for coral reefs, diving, snorkeling and island boat trips.", "rating": 4.8, "reviews": 1180, "price": 2400, "guide": {"enabled": false, "name": "", "price": 0, "unit": "per day"}, "categories": ["Beach"], "images": ["https://commons.wikimedia.org/wiki/Special:FilePath/Egypt-hurghada-sea01.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Egipt_redsea.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Boats_in_the_corals_of_Red_Sea.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Boat_near_Paradise_Island%2C_Hurghada.jpg?width=1200"], "lat": 27.26, "lng": 33.81}, {"id": "sharm", "name": "Sharm El Sheikh", "desc": "Red Sea · Resorts", "about": "A Sinai resort town with Naama Bay, Ras Mohammed National Park and world-class diving.", "rating": 4.8, "reviews": 1420, "price": 2800, "guide": {"enabled": false, "name": "", "price": 0, "unit": "per day"}, "categories": ["Beach"], "images": ["https://commons.wikimedia.org/wiki/Special:FilePath/Naama_Bay_R01.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Naama_Bay_Beach_R01.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/Gold_Beach_at_Ras_Um_Sid_Bay.jpg?width=1200", "https://commons.wikimedia.org/wiki/Special:FilePath/La_barriera_corallina_di_Ras_Mohammed_-_panoramio.jpg?width=1200"], "lat": 27.91, "lng": 34.33}], "video": {"enabled": true, "url": "", "title": "Discover Egypt", "text": "Temples on the Nile, desert oases and Red Sea reefs — plan your next journey through the land of the pharaohs.", "button": "Start exploring"}, "stories": [{"id": "st-luxor", "tag": "Historical", "title": "Walk Through the Temples of Luxor", "text": "Start at Karnak, wander along the sphinx avenue and end the day at Luxor Temple as the lights come on.", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Luxor_Temple_at_night%2C_Luxor%2C_Egypt.jpg?width=1200", "link": "", "tripId": "luxor"}, {"id": "st-aswan", "tag": "Nile", "title": "Drift Down the Nile to Philae", "text": "Hop on a felucca in Aswan and sail out to the island temple of Isis at Philae.", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Philae_Temple_R03.jpg?width=1200", "link": "", "tripId": "aswan"}, {"id": "st-siwa", "tag": "Desert", "title": "Sleep Under the Stars in Siwa", "text": "Float in a salt lake, explore the old Shali fortress and watch the sun set behind the palms.", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Palms_of_the_Siwa_Oasis.jpg?width=1200", "link": "", "tripId": "siwa"}, {"id": "st-giza", "tag": "Historical", "title": "Meet the Pyramids at Giza", "text": "Stand in front of the Great Pyramid and the Sphinx, then spend an evening in Cairo's old streets.", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Giza_Pyramid_Complex_%2831956421147%29.jpg?width=1200", "link": "", "tripId": "giza"}, {"id": "st-hurghada", "tag": "Beach", "title": "Snorkel the Reefs Off Hurghada", "text": "Take a boat to the Red Sea islands, swim over the coral and relax on the sand.", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Egypt-hurghada-sea01.jpg?width=1200", "link": "", "tripId": "hurghada"}, {"id": "st-alex", "tag": "Mediterranean", "title": "A Day by the Sea in Alexandria", "text": "Visit the Qaitbay Citadel, stroll along the Corniche and finish with fresh seafood.", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Citadel_of_Qaitbay%2C_Alexandria%2C_Egypt.jpg?width=1200", "link": "", "tripId": "alexandria"}], "booking": {"childPct": 50, "basis": "person"}, "extras": [{"id": "transport", "name": "Transport", "price": 800, "unit": "day"}, {"id": "meals", "name": "Meals", "price": 300, "unit": "personday"}]};
+
+const PLACE_DEFAULTS=[{"id": "cafe-nile", "type": "Café", "name": "Nile View Café", "location": "Cairo, Egypt", "description": "Relax with a Nile view and a comfortable atmosphere.", "price": 180, "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=85", "details": "Enjoy a calm corner above the river with specialty coffee, fresh juices and homemade desserts. It is a good stop between sightseeing days, with air-conditioned indoor seating and a breezy terrace. Come around sunset for the best light over the water.", "info": ["Opening hours: 9:00 AM – 12:00 AM", "Best for: Coffee, desserts and Nile views", "Best time: Sunset", "Average spend: about EGP 180 per person", "Seating: Indoor and terrace", "Good to know: Reservations recommended on weekends", "Payment: Cash and cards"], "images": [], "map": ""}, {"id": "cafe-alex", "type": "Café", "name": "Alexandria Seaside Café", "location": "Alexandria, Egypt", "description": "A casual seaside stop for coffee, desserts and sunset views.", "price": 220, "image": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85", "details": "A relaxed seaside café for coffee, ice cream and sweets with the Mediterranean in front of you. Ideal for a slow afternoon after visiting the Citadel or walking the Corniche; it gets lively in the evening.", "info": ["Opening hours: 10:00 AM – 1:00 AM", "Best for: Sunset and desserts", "Best time: Late afternoon", "Average spend: about EGP 220 per person", "Seating: Sea-view terrace", "Good to know: Windy evenings — bring a light jacket", "Payment: Cash and cards"], "images": [], "map": ""}, {"id": "activity-safari", "type": "Entertainment", "name": "Desert Safari Adventure", "location": "Hurghada, Egypt", "description": "A fun desert experience with sightseeing and outdoor activities.", "price": 900, "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1200&q=85", "details": "A guided drive through the desert dunes with photo stops, a short camel ride and a sunset tea break. Suitable for most ages; hotel pick-up can be arranged.", "info": ["Duration: About 5 hours", "Includes: Transport and a local guide", "Best time: Afternoon to sunset", "Price: from EGP 900 per person", "Bring: Sun protection, water and a light scarf", "Good to know: Wear closed shoes", "Booking: Confirm the pick-up point on WhatsApp"], "images": [], "map": ""}, {"id": "activity-felucca", "type": "Activity", "name": "Nile Felucca Ride", "location": "Aswan, Egypt", "description": "Enjoy a calm traditional boat ride along the Nile.", "price": 500, "image": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1200&q=85", "details": "Glide along the Nile on a traditional sailing boat with a local captain. Quiet, scenic and great for photos; you can stop near the islands and enjoy a cold drink on board.", "info": ["Duration: 1–2 hours", "Best time: Sunset", "Price: from EGP 500 per boat ride", "Suitable for: Couples, families and small groups", "Bring: Hat and sunglasses", "Good to know: Weather and wind can change the route", "Booking: Confirm the departure point on WhatsApp"], "images": [], "map": ""}, {"id": "activity-family", "type": "Entertainment", "name": "Family Fun Day", "location": "Giza, Egypt", "description": "A flexible entertainment option for families and groups.", "price": 650, "image": "https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=1200&q=85", "details": "A flexible day of entertainment for families and groups, planned around ages and interests — games, light activities and relaxed breaks. Tell us your group size and we will suggest a plan.", "info": ["Suitable for: Families and groups", "Duration: Flexible (half or full day)", "Price: from EGP 650 per person", "Includes: Planning and a coordinator", "Good to know: Child-friendly options available", "Booking: Share group size and ages on WhatsApp"], "images": [], "map": ""}, {"id": "activity-sea", "type": "Activity", "name": "Red Sea Boat Day", "location": "Sharm El Sheikh, Egypt", "description": "A full day of sea views, relaxation and water activities.", "price": 1200, "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85", "details": "A full day on the Red Sea with boat rides, swimming and snorkeling stops, plus time to relax on deck. Snorkeling gear and a light lunch are part of a typical day.", "info": ["Duration: Full day", "Includes: Boat trip and swimming stops", "Price: from EGP 1,200 per person", "Best time: Morning departure", "Bring: Swimwear, towel and sun cream", "Good to know: Sea conditions can affect the schedule", "Booking: Confirm the departure time on WhatsApp"], "images": [], "map": ""}];
+const EVENT_DEFAULTS=[
+{id:"eco-egypt",category:"Sustainability",title:"Nile Eco Days",location:"Aswan, Egypt",description:"Explore ideas and activities that celebrate the Nile and sustainable travel.",image:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85",link:""},
+{id:"culture-cairo",category:"Art and culture",title:"Cairo Culture Week",location:"Cairo, Egypt",description:"A celebration of local art, music, crafts and Egyptian culture.",image:"https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1200&q=85",link:""},
+{id:"heritage-siwa",category:"Heritage",title:"Siwa Heritage Festival",location:"Siwa Oasis, Egypt",description:"Discover oasis traditions, local crafts and the landscapes of Siwa.",image:"https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1200&q=85",link:""}
+];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const en=s=>String(s).replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d));
+const fmt=n=>Number(n||0).toLocaleString("en-US");
+document.documentElement.classList.add("js");
+let pageN=1,RV=true,CUR="EGP",picks=[],sig="",D=DEFAULT,admin=false,tag="",timer=null,cur=null,placeType="All";const saved=new Set();
+try{JSON.parse(localStorage.getItem("masrgo_saved")||"[]").forEach(id=>saved.add(id))}catch(e){}
+function persist(){try{localStorage.setItem("masrgo_draft",JSON.stringify(D))}catch(e){alert("Storage full")}}
+async function init(){let d=null;
+try{const r=await fetch("data.json?v="+Date.now());if(r.ok)d=await r.json()}catch(e){}
+try{const x=localStorage.getItem("masrgo_draft");if(x)d=JSON.parse(x)}catch(e){}
+D=d||DEFAULT;D.currencies=D.currencies&&D.currencies.length?D.currencies:DEFAULT.currencies;D.catIcons=D.catIcons||{};D.video=D.video||DEFAULT.video;D.stories=D.stories||DEFAULT.stories;D.booking=D.booking||DEFAULT.booking;D.extras=Array.isArray(D.extras)?D.extras:DEFAULT.extras.map(x=>({...x}));D.events=Array.isArray(D.events)?D.events:EVENT_DEFAULTS.map(x=>({...x}));D.places=Array.isArray(D.places)?D.places:PLACE_DEFAULTS.map(x=>({...x}));try{CUR=localStorage.getItem("masrgo_cur")||"EGP"}catch(e){}render()}
+/* ===== Hieroglyph parallax ===== */
+const G=[..."𓀀𓁐𓂀𓃭𓅓𓆣𓇳𓈖𓉐𓊪𓋹𓌳𓍯𓎛𓏏𓀭𓁹𓃒𓄿𓅱𓆓𓇯𓈎"],GH=48;
+function buildH(el,flip){const cols=Math.max(1,Math.floor(el.clientWidth/GH)),N=G.length,rows=Math.ceil(innerHeight/GH)+N+2;let h='<div class="in">';
+for(let c=0;c<cols;c++){const k=flip?cols-1-c:c;let t="";for(let r=0;r<rows;r++)t+=G[(r+k*5)%N]+"\n";h+=`<div class="c" style="margin-top:${c%2?-GH/2:0}px">${t}</div>`}
+el.innerHTML=h+"</div>"}
+function moveH(){const y="translateY("+(-((scrollY*.45)%(G.length*GH)))+"px)";document.querySelectorAll(".hs .in").forEach(e=>e.style.transform=y)}
+function setH(){buildH($("hl"),false);buildH($("hr"),true);moveH()}
+addEventListener("scroll",()=>requestAnimationFrame(moveH),{passive:true});addEventListener("resize",setH);setH();
+/* ===== Page ===== */
+const SV={h:'<path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/>',b:'<path d="M2 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 13c2-2 4-2 6 0s4 2 6 0 4-2 6 0M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/>',d:'<path d="M2 20L10 7l8 13zM13 20l4-6.5 5 6.5"/><circle cx="18" cy="5" r="1.8"/>',c:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'};
+function icon(n){const u=(D.catIcons||{})[n];if(u)return`<img class="gi" src="${esc(u)}" alt="" onerror="this.style.visibility='hidden'">`;const k=/hist|temple|cultur|museum|ancient|تاريخ|معبد|آثار|اثار/i.test(n)?"h":/beach|sea|dive|snork|water|nile|river|cruise|شاطئ|بحر|غوص|نيل|ساحل/i.test(n)?"b":/desert|safari|oasis|camp|صحراء|سفاري|واحة/i.test(n)?"d":"c";
+return`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${SV[k]}</svg>`}
+function buildMq(){const mq=$("mq"),set=D.categories.map(c=>`<button class="chip" data-t="${esc(c)}"><span class="ci">${icon(c)}</span>${esc(c)}</button>`).join("");
+if(!set){mq.innerHTML="";return}
+mq.innerHTML=`<div class="mqt" id="mqt">${set}</div>`;const w=$("mqt").scrollWidth||1,k=Math.max(1,Math.ceil(mq.clientWidth/w)),half=set.repeat(k);
+$("mqt").innerHTML=`<div class="mqh">${half}</div><div class="mqh">${half}</div>`;$("mqt").style.animationDuration=Math.max(12,w*k/45)+"s"}
+function fixPicks(){const ids=D.trips.map(t=>t.id);picks=picks.filter(i=>ids.includes(i));const n=Math.min(3,ids.length);
+while(picks.length<n){const r=ids.filter(i=>!picks.includes(i));picks.push(r[Math.floor(Math.random()*r.length)])}}
+const curObj=()=>(D.currencies||[]).find(c=>c.code===CUR)||(D.currencies||[])[0]||{code:"EGP",symbol:"EGP",rate:1};
+const money=e=>{const c=curObj(),v=Math.round(e/(c.rate||1)),s=/^[A-Za-z]+$/.test(c.symbol)?c.symbol+" ":c.symbol;return s+fmt(v)};
+const card=(t,ai,k)=>`<article class="card${RV?" rv":""}" style="--d:${(k||0)*90}ms" data-id="${esc(t.id)}"><div class="ph"><img src="${esc((t.images||[])[0])}" alt="${esc(t.name)}" loading="lazy" decoding="async" onerror="this.style.visibility='hidden'">${ai?'<span class="badge">✦ AI pick</span>':""}<button class="bm ${saved.has(t.id)?"on":""}" data-bm="${esc(t.id)}" aria-label="Save"><svg width="22" height="24" viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14v20l-7-5-7 5z"/></svg></button></div><div class="cb"><h3>${esc(t.name)}</h3><p class="meta"><span class="star">★</span> ${esc(t.rating)} <small>(${fmt(t.reviews)})</small> · ${esc(t.desc)}</p><div class="cpr"><div><small>From</small><b>${money(t.price)}</b><span>/ night</span></div><span class="free">✓ Free cancellation</span></div><div class="ccta">View details &amp; book <span>→</span></div></div></article>`;
+/* ===== Hero / interests / map ===== */
+let hero=[],hi=0,ht=null,hsig="";
+function renderHero(){const ids=D.trips.map(t=>t.id);const fe=D.trips.filter(t=>t.featured).slice(0,6).map(t=>t.id);
+if(fe.length)hero=fe;else{hero=hero.filter(i=>ids.includes(i));const n0=Math.min(4,ids.length);while(hero.length<n0){const r=ids.filter(i=>!hero.includes(i));hero.push(r[Math.floor(Math.random()*r.length)])}}
+const n=hero.length;
+const L=hero.map(i=>D.trips.find(t=>t.id===i)),sig=JSON.stringify(L);if(sig===hsig)return;hsig=sig;clearInterval(ht);const el=$("hv");
+if(!n){el.hidden=true;return}el.hidden=false;hi=0;
+el.innerHTML=L.map((t,k)=>`<div class="sd ${k?"":"on"}"><img loading="eager" decoding="async" src="${esc((t.images||[])[0])}" alt="" onerror="this.style.visibility='hidden'"><div class="tx"><small>${esc((t.categories||[])[0]||"Egypt")}</small><h2>${esc(t.name)}</h2><p>${esc(t.about||t.desc)}</p><button class="go" data-hid="${esc(t.id)}">Explore ${esc(t.name)}</button></div></div>`).join("")+(L.length>1?`<div class="ct"><button class="ar2" data-hd="-1" aria-label="Previous slide">‹</button><span id="hc">01/0${L.length}</span>${L.map((t,k)=>`<i class="${k?"":"on"}" data-hk="${k}"></i>`).join("")}<button class="ar2" data-hd="1" aria-label="Next slide">›</button></div>`:"");
+const go=k=>{hi=(k+L.length)%L.length;el.querySelectorAll(".sd").forEach((e,j)=>e.classList.toggle("on",j===hi));el.querySelectorAll(".ct i").forEach((e,j)=>e.classList.toggle("on",j===hi));const c=$("hc");if(c)c.textContent="0"+(hi+1)+"/0"+L.length};
+const auto=()=>{clearInterval(ht);if(L.length>1)ht=setInterval(()=>go(hi+1),5500)};
+el.onclick=e=>{const ad=e.target.closest("[data-hd]");if(ad){go(hi+Number(ad.dataset.hd));auto();return}const b=e.target.closest("[data-hid]");if(b)return openTrip(b.dataset.hid);const d=e.target.closest("[data-hk]");if(d){go(+d.dataset.hk);auto()}};auto()}
+function renderInts(){const it0=D.categories.join()+JSON.stringify(D.catIcons||{})+JSON.stringify(D.trips.map(t=>[t.id,t.categories,(t.images||[])[0]]));if(it0===isig)return;isig=it0;const it=D.categories.map(c=>({c,t:D.trips.filter(t=>(t.categories||[]).includes(c))})).filter(x=>x.t.length);$("s3").hidden=!it.length;
+$("ints").innerHTML=it.map((x,i)=>`<button class="int rv" data-ic="${esc(x.c)}" style="--d:${i*90}ms;background-image:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,.05)),url('${esc((x.t[0].images||[])[0]||"")}')"><span class="ci2">${icon(x.c)}</span><b>${esc(x.c)}</b><small>${x.t.length} ${x.t.length>1?"trips":"trip"}</small></button>`).join("")}
+const MX=lo=>(lo-24.7)*35.8,MY=la=>(31.7-la)*40.2;
+const EG=[[25,31.6],[27,31.35],[29,30.9],[29.9,31.2],[30.4,31.5],[31,31.6],[31.8,31.5],[32.3,31.28],[33.5,31.1],[34.27,31.22],[34.5,30.5],[34.9,29.5],[34.7,28.9],[34.4,28.1],[34.25,27.75],[33.6,28.25],[32.7,29.6],[32.55,29.95],[32.35,29.6],[33.1,28.35],[33.8,27.25],[33.95,26.75],[34.3,26.1],[34.9,25.05],[35.5,23.9],[36.9,22],[25,22]];
+const NILE=[[32.9,24.1],[32.65,25.7],[32.7,26.15],[31.18,27.18],[30.75,28.1],[31.1,29.07],[31.25,30.05],[30.4,31.45]],NILE2=[[31.25,30.05],[31.8,31.45]];
+const pts=a=>a.map(p=>MX(p[0]).toFixed(1)+","+MY(p[1]).toFixed(1)).join(" ");
+function renderMap(){const L=D.trips.filter(t=>typeof t.lat==="number"&&typeof t.lng==="number");$("s4").hidden=!L.length;
+$("mapbox").innerHTML=`<svg viewBox="0 0 440 392" role="img" aria-label="Map of Egypt"><polygon points="${pts(EG)}" class="eg"/><polyline points="${pts(NILE)}" class="nl"/><polyline points="${pts(NILE2)}" class="nl"/>${L.map(t=>{const x=MX(t.lng).toFixed(1),y=MY(t.lat).toFixed(1),lf=t.lng>33.5;return`<g class="pin" data-pid="${esc(t.id)}" tabindex="0"><circle cx="${x}" cy="${y}" r="9" class="pr"/><circle cx="${x}" cy="${y}" r="4.5" class="pd"/><text x="${lf?x-13:+x+13}" y="${+y+4}" text-anchor="${lf?"end":"start"}">${esc(t.name)}</text></g>`}).join("")}</svg>`}
+/* ===== Reveal on scroll ===== */
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);el.classList.add("in");setTimeout(()=>el.classList.remove("rv","in"),1400+(parseInt(el.style.getPropertyValue("--d"))||0))}),{threshold:0,rootMargin:"0px 0px -4% 0px"}):null;
+addEventListener("scroll",()=>{if(innerHeight+scrollY>=document.documentElement.scrollHeight-6)document.querySelectorAll(".rv:not(.in)").forEach(el=>el.classList.add("in"))},{passive:true});
+function reveal(){document.querySelectorAll(".rv:not(.in)").forEach(el=>io?io.observe(el):el.classList.add("in"))}
+/* ===== Welcome video ===== */
+let vsig="",ssig="",isig="";
+function vidInfo(u){let m=u.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/);if(m)return{k:"yt",id:m[1]};
+m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);if(m)return{k:"vm",id:m[1]};
+if(/\.(mp4|webm|ogg|mov)(\?|#|$)/i.test(u))return{k:"file",u};
+if(/^https?:\/\//i.test(u))return{k:"ifr",u};return null}
+function fitVid(){const el=$("vh");if(el.hidden)return;const f=el.querySelector("iframe[data-fit]");if(!f)return;const w=el.clientWidth,h=el.clientHeight;let fw=w,fh=w*9/16;if(fh<h){fh=h;fw=h*16/9}f.style.width=fw+"px";f.style.height=fh+"px"}
+function renderVideo(){const v=D.video||{},el=$("vh"),sig=JSON.stringify(v)+(D.trips[0]?D.trips[0].id:"");if(sig===vsig)return;vsig=sig;
+if(!v.enabled){el.hidden=true;el.innerHTML="";return}
+el.hidden=false;let u=(v.url||"").trim();const sm=u.match(/src=["']([^"']+)["']/);if(sm)u=sm[1];const k=u?vidInfo(u):null;let media="",snd=false;
+if(k&&k.k==="yt"){media=`<iframe data-fit="1" src="https://www.youtube-nocookie.com/embed/${k.id}?autoplay=1&mute=1&loop=1&playlist=${k.id}&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&disablekb=1&iv_load_policy=3" allow="autoplay; encrypted-media; picture-in-picture" title="Video" tabindex="-1"></iframe>`;snd=true}
+else if(k&&k.k==="vm")media=`<iframe data-fit="1" src="https://player.vimeo.com/video/${k.id}?background=1&autoplay=1&loop=1&muted=1" allow="autoplay" title="Video" tabindex="-1"></iframe>`;
+else if(k&&k.k==="file"){media=`<video src="${esc(k.u)}" autoplay muted loop playsinline></video>`;snd=true}
+else if(k&&k.k==="ifr")media=`<iframe src="${esc(k.u)}" allow="autoplay; fullscreen" title="Video"></iframe>`;
+else{const t=D.trips.find(x=>x.id==="giza")||D.trips[0];media=t?`<img class="kb" src="${esc((t.images||[])[0])}" alt="">`:""}
+el.innerHTML=`<div class="vm">${media}</div><div class="vo"></div><div class="vt"><small>Egypt · مصر</small><h1>${esc(v.title||"")}</h1><p>${esc(v.text||"")}</p>${v.button?`<button class="go2" data-vgo="1">${esc(v.button)}</button>`:""}</div>${snd?`<button class="snd" data-snd="1">Unmute</button>`:""}`;fitVid()}
+$("vh").onclick=e=>{if(e.target.closest("[data-vgo]"))return $("q").scrollIntoView({behavior:"smooth",block:"center"});
+const b=e.target.closest("[data-snd]");if(!b)return;const on=b.dataset.on!=="1",f=$("vh").querySelector("iframe"),vd=$("vh").querySelector("video");b.dataset.on=on?"1":"0";b.textContent=on?"Mute":"Unmute";
+if(vd)vd.muted=!on;if(f&&f.contentWindow)f.contentWindow.postMessage(JSON.stringify({event:"command",func:on?"unMute":"mute",args:[]}),"*")};
+addEventListener("resize",fitVid);
+/* ===== Stories ===== */
+
+function renderPlaces(){
+  const list=D.places||[];
+  const types=["All",...new Set(list.map(x=>x.type).filter(Boolean))];
+  $("placeFilters").innerHTML=types.map(x=>`<button class="place-filter ${x===placeType?"on":""}" data-ptype="${esc(x)}">${esc(x)}</button>`).join("");
+  const filtered=placeType==="All"?list:list.filter(x=>x.type===placeType);
+  $("placesGrid").innerHTML=filtered.length?filtered.map(x=>`
+    <article class="place-card" data-pid="${esc(x.id)}" tabindex="0" role="button" aria-label="${esc(x.name)} — details">
+      <div class="place-photo">
+        <img src="${esc(x.image||"")}" alt="${esc(x.name||"")}" loading="lazy" onerror="this.style.visibility='hidden'">
+        <span class="place-type">${esc(x.type||"Place")}</span>
+      </div>
+      <div class="place-body">
+        <h3>${esc(x.name)}</h3>
+        <p class="place-location">● ${esc(x.location||"Egypt")}</p>
+        <p class="place-desc">${esc(x.description||"Discover this place in Egypt.")}</p>
+        <div class="place-bottom">
+          <span class="place-price">${x.price>0?money(x.price):"Contact us"}</span>
+          <div class="place-btns"><button class="place-dt" data-place-dt="${esc(x.id)}">Details</button><button class="place-wa" data-place-wa="${esc(x.id)}">Ask on WhatsApp</button></div>
+        </div>
+      </div>
+    </article>`).join(""):'<div class="event-empty">No places in this category yet.</div>';
+}
+function inquirePlace(id){
+  const p=(D.places||[]).find(x=>x.id===id); if(!p)return;
+  const num=en(D.whatsapp||"").replace(/\D/g,"");
+  if(!num)return alert("WhatsApp number is not set yet.");
+  const msg=`Hello Egypt Go 👋\nI'd like to ask about: ${p.name}\nType: ${p.type||"Place"}\nLocation: ${p.location||"Egypt"}\nPrice: ${p.price>0?("EGP "+fmt(p.price)):"Please advise"}\n${location.href.split("#")[0]}`;
+  window.open("https://wa.me/"+num+"?text="+encodeURIComponent(msg),"_blank");
+}
+$("placeFilters").onclick=e=>{const b=e.target.closest("[data-ptype]");if(!b)return;placeType=b.dataset.ptype;renderPlaces()};
+$("placesGrid").onclick=e=>{const d=e.target.closest("[data-place-dt]");if(d)return openPlace(d.dataset.placeDt);const b=e.target.closest("[data-place-wa]");if(b)return inquirePlace(b.dataset.placeWa);const c=e.target.closest(".place-card");if(c)openPlace(c.dataset.pid)};
+$("placesGrid").onkeydown=e=>{if(e.key!=="Enter"&&e.key!==" ")return;const c=e.target.closest(".place-card");if(c&&e.target===c){e.preventDefault();openPlace(c.dataset.pid)}};
+function mountSlider(im){let i=0;const sl=$("box").querySelector(".sl"),tr=sl.querySelector(".slt");
+const show=()=>{tr.style.transform=`translateX(${-i*100}%)`;$("box").querySelectorAll(".dots i").forEach((e,k)=>e.classList.toggle("on",k===i))};
+const go=n=>{i=(n+im.length)%im.length;show()};
+const auto=()=>{clearInterval(timer);if(im.length>1)timer=setInterval(()=>go(i+1),3200)};
+let x0=null,dx=0;
+sl.onpointerdown=e=>{if(im.length<2||e.target.closest(".x,.dots"))return;x0=e.clientX;dx=0;clearInterval(timer);sl.classList.add("drag");try{sl.setPointerCapture(e.pointerId)}catch(_){}};
+sl.onpointermove=e=>{if(x0===null)return;dx=e.clientX-x0;tr.style.transform=`translateX(calc(${-i*100}% + ${dx}px))`};
+const end=()=>{if(x0===null)return;const w=sl.clientWidth;x0=null;sl.classList.remove("drag");if(Math.abs(dx)>w*.15)go(i+(dx<0?1:-1));else show();auto()};
+sl.onpointerup=end;sl.onpointercancel=end;cur={t:null,go:n=>{go(n);auto()},i:()=>i};show();auto()}
+function openPlace(id){const p=(D.places||[]).find(x=>x.id===id);if(!p)return;clearInterval(timer);
+const im=[p.image,...(p.images||[])].filter(Boolean),ims=im.length?im:[""];
+const info=(p.info||[]).map(l=>{const k=l.indexOf(":");return k>0?`<div class="pi-row"><span>${esc(l.slice(0,k).trim())}</span><b>${esc(l.slice(k+1).trim())}</b></div>`:`<div class="pi-row"><b>${esc(l)}</b></div>`}).join("");
+$("box").className="box big";
+$("box").innerHTML=`<div class="sl"><div class="slt">${ims.map(u=>`<img src="${esc(u)}" alt="" draggable="false" onerror="this.style.visibility='hidden'">`).join("")}</div>${ims.length>1?`<div class="dots">${ims.map((u,k)=>`<i class="${k?"":"on"}" data-d="${k}"></i>`).join("")}</div>`:""}<button class="x" data-act="close">×</button></div><div class="bd"><small class="stg">${esc(p.type||"Place")}</small><h2>${esc(p.name)}</h2><p class="meta">● ${esc(p.location||"Egypt")} · ${p.price>0?money(p.price):"Contact us"}</p>${p.description?`<p>${esc(p.description)}</p>`:""}${p.details?`<p class="pd-text">${esc(p.details)}</p>`:""}${info?`<div class="pinfo">${info}</div>`:""}<button class="btn wa" data-act="placewa" data-v="${esc(p.id)}">Ask on WhatsApp</button>${p.map&&/^https?:\/\//i.test(p.map)?` <button class="btn ghost" style="width:100%;margin-top:8px" data-act="placemap" data-v="${esc(p.map)}">View on map</button>`:""}</div>`;
+mountSlider(ims);$("ov").hidden=false}
+function renderStories(){const L=D.stories||[],sig=JSON.stringify(L);if(sig===ssig)return;ssig=sig;$("s5").hidden=!L.length;
+$("stories").innerHTML=L.map((s,i)=>`<button class="st rv" style="--d:${i*90}ms" data-sid="${esc(s.id)}"><div class="im"><img src="${esc(s.image)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"></div><small>${esc(s.tag)}</small><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p><u>Read more →</u></button>`).join("")}
+$("stories").onclick=e=>{const b=e.target.closest(".st");if(b)openStory(b.dataset.sid)};
+function openStory(id){const s=(D.stories||[]).find(x=>x.id===id);if(!s)return;clearInterval(timer);cur=null;const tr=D.trips.find(t=>t.id===s.tripId);
+$("box").className="box big";
+$("box").innerHTML=`<div class="sl"><div class="slt"><img src="${esc(s.image)}" alt="" onerror="this.style.visibility='hidden'"></div><button class="x" data-act="close">×</button></div><div class="bd"><small class="stg">${esc(s.tag)}</small><h2>${esc(s.title)}</h2><p>${esc(s.text)}</p>${tr?`<button class="btn" data-act="storytrip" data-v="${esc(tr.id)}">Open ${esc(tr.name)}</button> `:""}${s.link?`<button class="btn ghost" data-act="storylink" data-v="${esc(s.link)}">Read more</button>`:""}</div>`;$("ov").hidden=false}
+const eventSaved=new Set();try{JSON.parse(localStorage.getItem("masrgo_event_saved")||"[]").forEach(id=>eventSaved.add(id))}catch(e){}
+function renderEvents(){const list=D.events||[];const track=$("eventsTrack");if(!list.length){track.innerHTML='<div class="event-empty">No events yet — add cards from Developer mode.</div>';return}
+track.innerHTML=list.map(e=>`<article class="event-card" data-event="${esc(e.id)}"><div class="event-photo"><img src="${esc(e.image||"")}" alt="${esc(e.title)}" loading="lazy" onerror="this.style.visibility='hidden'"><span class="event-label">${esc(e.category||"Events")}</span><button class="event-fav ${eventSaved.has(e.id)?"on":""}" data-efav="${esc(e.id)}" aria-label="Save event">${eventSaved.has(e.id)?"♥":"♡"}</button></div><h3 class="event-title">${esc(e.title)}</h3><p class="event-location">${esc(e.location||"Egypt")}</p><button class="event-more" data-emore="${esc(e.id)}">Find out more</button></article>`).join("")}
+$("eventsTrack").onclick=e=>{const fav=e.target.closest("[data-efav]");if(fav){const id=fav.dataset.efav;eventSaved.has(id)?eventSaved.delete(id):eventSaved.add(id);try{localStorage.setItem("masrgo_event_saved",JSON.stringify([...eventSaved]))}catch(_){}fav.classList.toggle("on");fav.textContent=eventSaved.has(id)?"♥":"♡";return}
+const more=e.target.closest("[data-emore]");if(more){const item=(D.events||[]).find(x=>x.id===more.dataset.emore);if(!item)return;if(item.link&&/^https?:\/\//i.test(item.link)){window.open(item.link,"_blank","noopener");return}
+$("box").className="box";$("box").innerHTML=`<h3>${esc(item.title)}</h3><p class="meta">${esc(item.category||"Events")} · ${esc(item.location||"Egypt")}</p><p>${esc(item.description||"Discover this event in Egypt.")}</p><div class="row"><button class="btn" data-act="close">Close</button></div>`;$("ov").hidden=false}};
+function render(){fixPicks();
+if(!(D.currencies||[]).some(c=>c.code===CUR))CUR=(D.currencies[0]||{}).code||"EGP";
+$("cur").innerHTML=(D.currencies||[]).map(c=>`<option value="${esc(c.code)}" ${c.code===CUR?"selected":""}>${esc(c.code)}</option>`).join("");
+if(tag&&!D.categories.includes(tag))tag="";
+const s2=D.categories.join("|")+JSON.stringify(D.catIcons||{});if(s2!==sig){sig=s2;buildMq()}
+document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c.dataset.t===tag));
+const s=$("q").value.trim().toLowerCase();
+const ok=t=>(!tag||(t.categories||[]).includes(tag))&&(!s||(t.name+" "+t.desc).toLowerCase().includes(s));
+const A0=picks.map(i=>D.trips.find(t=>t.id===i)).filter(t=>t&&ok(t)),S=D.trips.filter(ok),PS=5,pages=Math.max(1,Math.ceil(S.length/PS));
+if(pageN>pages)pageN=pages;if(pageN<1)pageN=1;
+const A=pageN===1?A0:[],B=S.slice((pageN-1)*PS,pageN*PS);
+$("g1").innerHTML=A.map((t,k)=>card(t,1,k)).join("");$("g2").innerHTML=B.map((t,k)=>card(t,picks.includes(t.id)?1:0,k)).join("");renderEvents();renderPlaces();
+$("s1").hidden=!A.length;$("s2").hidden=!B.length;$("none").hidden=!!(A.length||B.length);renderPager(pages);renderHero();renderInts();renderMap();renderVideo();renderStories();reveal()}
+function renderPager(n){const el=$("pg");el.hidden=n<=1;if(n<=1){el.innerHTML="";return}
+let x=`<button class="pgb" data-pg="${pageN-1}" ${pageN<=1?"disabled":""} aria-label="Previous page">‹</button>`;
+for(let i=1;i<=n;i++)x+=`<button class="pgb ${i===pageN?"on":""}" data-pg="${i}">${i}</button>`;
+x+=`<button class="pgb" data-pg="${pageN+1}" ${pageN>=n?"disabled":""} aria-label="Next page">›</button><span class="pgi">Page ${pageN} of ${n}</span>`;el.innerHTML=x}
+$("pg").onclick=e=>{const b=e.target.closest("[data-pg]");if(!b||b.disabled)return;pageN=+b.dataset.pg;render();($("s1").hidden?$("s2"):$("s1")).scrollIntoView({behavior:"smooth",block:"start"})};
+const onGrid=e=>{const b=e.target.closest(".bm");if(b){e.stopPropagation();const id=b.dataset.bm;saved.has(id)?saved.delete(id):saved.add(id);try{localStorage.setItem("masrgo_saved",JSON.stringify([...saved]))}catch(e){}b.classList.toggle("on");return}
+const c=e.target.closest(".card");if(c)openTrip(c.dataset.id)};
+$("g1").onclick=onGrid;$("g2").onclick=onGrid;
+$("mq").onclick=e=>{const c=e.target.closest(".chip");if(!c)return;tag=tag===c.dataset.t?"":c.dataset.t;pageN=1;render()};
+$("ints").onclick=e=>{const c=e.target.closest(".int");if(!c)return;tag=c.dataset.ic;pageN=1;render();$("s1").scrollIntoView({behavior:"smooth",block:"start"})};
+$("mapbox").onclick=e=>{const g=e.target.closest(".pin");if(g)openTrip(g.dataset.pid)};
+$("mapbox").onkeydown=e=>{if(e.key==="Enter"){const g=e.target.closest(".pin");if(g)openTrip(g.dataset.pid)}};
+$("cur").onchange=()=>{CUR=$("cur").value;try{localStorage.setItem("masrgo_cur",CUR)}catch(e){}render();if(cur){const p=$("box").querySelector(".pr2");if(p)p.textContent="From "+money(cur.t.price)+" / night · Free cancellation";bkUpdate()}};
+let lw=innerWidth;addEventListener("resize",()=>{if(innerWidth!==lw){lw=innerWidth;sig="";render()}});
+addEventListener("load",()=>{sig="";render()});
+$("q").oninput=()=>{RV=false;pageN=1;render();RV=true};
+/* ===== Trip modal ===== */
+const closeOv=()=>{$("ov").hidden=true;document.body.style.overflow="";clearInterval(timer);cur=null};
+$("ov").onclick=e=>{if(e.target===$("ov"))closeOv()};
+addEventListener("keydown",e=>{if(e.key==="Escape")closeOv()});
+function openTrip(id){const t=D.trips.find(x=>x.id===id);if(!t)return;const im=(t.images&&t.images.length)?t.images:[""];let i=0;
+$("box").className="box big";
+$("box").innerHTML=`<div class="sl"><div class="slt">${im.map(u=>`<img src="${esc(u)}" alt="" draggable="false" onerror="this.style.visibility='hidden'">`).join("")}</div>${im.length>1?`<div class="dots">${im.map((u,k)=>`<i class="${k?"":"on"}" data-d="${k}"></i>`).join("")}</div>`:""}<button class="x" data-act="close">×</button></div><div class="bd"><h2>${esc(t.name)}</h2><p class="meta">${esc(t.desc)} · ${esc(t.rating)} <span class="star">★</span> (${fmt(t.reviews)})</p>${t.about?`<p>${esc(t.about)}</p>`:""}<div class="pr2">From ${money(t.price)} / night · Free cancellation</div>
+${t.guide&&t.guide.enabled?`<div class="guide-box"><b>🧭 Tour guide${t.guide.name?` · ${esc(t.guide.name)}`:""}</b><div class="guide-price">Guide service: ${money(t.guide.price||0)} ${esc(t.guide.unit||"per day")}</div><span class="guide-pill">Available with this trip</span></div>`:""}
+<div class="bk-wrap" id="bkw" hidden>${bkHTML(t)}</div><div class="act2"><button class="btn dt" data-act="details" aria-expanded="false">Details</button><button class="btn wa" data-act="book">Book on WhatsApp</button></div></div>`;bkInit(t);
+const sl=$("box").querySelector(".sl"),tr=sl.querySelector(".slt");
+const show=()=>{tr.style.transform=`translateX(${-i*100}%)`;$("box").querySelectorAll(".dots i").forEach((e,k)=>e.classList.toggle("on",k===i))};
+const go=n=>{i=(n+im.length)%im.length;show()};
+const auto=()=>{clearInterval(timer);if(im.length>1)timer=setInterval(()=>go(i+1),3200)};
+let x0=null,dx=0;
+sl.onpointerdown=e=>{if(im.length<2||e.target.closest(".x,.dots"))return;x0=e.clientX;dx=0;clearInterval(timer);sl.classList.add("drag");try{sl.setPointerCapture(e.pointerId)}catch(_){}};
+sl.onpointermove=e=>{if(x0===null)return;dx=e.clientX-x0;tr.style.transform=`translateX(calc(${-i*100}% + ${dx}px))`};
+const end=()=>{if(x0===null)return;const w=sl.clientWidth;x0=null;sl.classList.remove("drag");if(Math.abs(dx)>w*.15)go(i+(dx<0?1:-1));else show();auto()};
+sl.onpointerup=end;sl.onpointercancel=end;
+cur={t,go:n=>{go(n);auto()},i:()=>i};show();auto();$("ov").hidden=false;document.body.style.overflow="hidden"}
+/* ===== Booking estimate ===== */
+const UN={person:"per person",day:"per day",personday:"per person / day",trip:"per trip"};
+let bk={a:2,c:0,n:1,x:new Set()},bkT=null;
+function bkExtras(t){const L=[];if(t.guide&&t.guide.enabled)L.push({id:"guide",name:"Tour guide"+(t.guide.name?" · "+t.guide.name:""),price:t.guide.price||0,unit:({"per day":"day","per trip":"trip","per person":"person"})[t.guide.unit]||"trip"});
+return L.concat((D.extras||[]).map(x=>({id:x.id,name:x.name,price:+x.price||0,unit:x.unit})))}
+function bkCalc(t){const B=D.booking||{},cp=(B.childPct==null?50:+B.childPct)/100,full=bk.a+bk.c,P=bk.a+bk.c*cp,n=bk.n;
+const base=B.basis==="booking"?t.price*n:t.price*n*P;let ex=0;
+bkExtras(t).filter(x=>bk.x.has(x.id)).forEach(x=>{ex+=x.price*({person:full,day:n,personday:full*n,trip:1}[x.unit]||1)});return{base,ex,total:base+ex}}
+function bkHTML(t){const ex=bkExtras(t),B=D.booking||{},cp=B.childPct==null?50:B.childPct;
+const row=(k,l,v)=>`<div class="bk-row"><span>${l}</span><div class="st2"><button type="button" data-bk="${k}-" aria-label="Less ${l}">−</button><b id="bk-${k}">${v}</b><button type="button" data-bk="${k}+" aria-label="More ${l}">+</button></div></div>`;
+return `<div class="bk"><h4>Plan your booking</h4>${row("a","Adults",2)}${row("c","Children",0)}${row("n","Nights",1)}${ex.length?`<div class="bk-sub">Extras</div>${ex.map(x=>`<label class="bk-x"><input type="checkbox" data-x="${esc(x.id)}"> ${esc(x.name)} <small data-xp="${esc(x.id)}"></small></label>`).join("")}`:""}<div class="bk-t"><span>Estimated total</span><b id="bk-t"></b></div><p class="bk-n">Approximate price${cp<100?` · children pay ${esc(cp)}% of the adult price`:""} · the final price is confirmed with you on WhatsApp.</p></div>`}
+function bkUpdate(){if(!bkT||!$("bk-t"))return;["a","c","n"].forEach(k=>{const e=$("bk-"+k);if(e)e.textContent=bk[k]});
+bkExtras(bkT).forEach(x=>{const s=$("box").querySelector('[data-xp="'+x.id+'"]');if(s)s.textContent="+ "+money(x.price)+" "+UN[x.unit]});
+$("bk-t").textContent="≈ "+money(bkCalc(bkT).total)}
+function bkInit(t){bkT=t;bk={a:2,c:0,n:1,x:new Set()};bkUpdate()}
+function bkStep(code){const k=code[0],dl=code[1]==="+"?1:-1,lim={a:[1,20],c:[0,20],n:[1,30]}[k];bk[k]=Math.max(lim[0],Math.min(lim[1],bk[k]+dl));bkUpdate()}
+$("box").onchange=e=>{const x=e.target.closest&&e.target.closest("[data-x]");if(x&&bkT){x.checked?bk.x.add(x.dataset.x):bk.x.delete(x.dataset.x);bkUpdate()}};
+function book(t){const n=en(D.whatsapp||"").replace(/\D/g,"");if(!n)return alert("WhatsApp number is not set yet.");
+const c=bkCalc(t),ex=bkExtras(t).filter(x=>bk.x.has(x.id)).map(x=>x.name),cv=curObj().code!=="EGP"?" (≈ "+money(c.total)+")":"";
+const msg=`Hello Egypt Go 👋\nI'd like to book: ${t.name}\nAdults: ${bk.a} · Children: ${bk.c} · Nights: ${bk.n}\nExtras: ${ex.length?ex.join(", "):"None"}\nEstimated total: EGP ${fmt(Math.round(c.total))}${cv} (approx. — please confirm the final price)\n${location.href.split("#")[0]}`;
+window.open("https://wa.me/"+n+"?text="+encodeURIComponent(msg),"_blank")}
+/* ===== Developer mode ===== */
+function login(){$("box").className="box";$("box").innerHTML=`<h3>Developer mode</h3><input id="pw" type="password" placeholder="Password" autocomplete="off"><p class="err" id="err"></p><div class="row"><button class="btn" data-act="go">Enter</button><button class="btn ghost" data-act="close">Cancel</button></div>`;$("ov").hidden=false;$("pw").focus();$("pw").onkeydown=e=>{if(e.key==="Enter")tryLogin()}}
+function tryLogin(){if($("pw").value==="333333"){admin=true;panel()}else $("err").textContent="Wrong password"}
+function panel(editId,stId,eventId,placeId){const pl=(D.places||[]).find(x=>x.id===placeId)||{}, ev=(D.events||[]).find(x=>x.id===eventId)||{},e=D.trips.find(t=>t.id===editId)||{},s=(D.stories||[]).find(x=>x.id===stId)||{},V=D.video||{};const draft=!!localStorage.getItem("masrgo_draft");
+$("box").className="box";$("box").dataset.edit=e.id||"";$("box").dataset.editst=s.id||"";$("box").dataset.editevent=ev.id||"";$("box").dataset.editplace=placeId||"";
+$("box").innerHTML=`<h3>Developer mode</h3>
+${draft?`<div class="note">⚠ Changes are saved in this browser only. Press <b>Download data.json</b> and upload it to GitHub next to index.html so everyone sees them.</div>`:""}
+<h4>WhatsApp number</h4><div class="row"><input id="wan" inputmode="tel" placeholder="e.g. 201001234567" value="${esc(D.whatsapp)}"><button class="btn" data-act="savewa">Save</button></div>
+<h4>Welcome video</h4><label><input type="checkbox" id="vden" ${V.enabled?"checked":""}> Show video area at the top</label>
+<input id="vdu" placeholder="YouTube / Vimeo / .mp4 link (or embed code)" value="${esc(V.url)}"><input id="vdt" placeholder="Title" value="${esc(V.title)}"><textarea id="vdx" rows="2" placeholder="Text">${esc(V.text)}</textarea><input id="vdb" placeholder="Button text (empty = no button)" value="${esc(V.button)}">
+<div class="row"><button class="btn" data-act="savevid">Save video area</button></div>
+<h4>Booking options</h4>
+<div class="row"><input id="bkcp" inputmode="numeric" placeholder="Children pay % of adult price" value="${esc((D.booking||{}).childPct==null?50:D.booking.childPct)}"><select id="bkbasis"><option value="person" ${(D.booking||{}).basis!=="booking"?"selected":""}>Price is per person / night</option><option value="booking" ${(D.booking||{}).basis==="booking"?"selected":""}>Price is per booking / night</option></select></div>
+<div class="note">Extras (shown as tick boxes in every trip):</div>
+${(D.extras||[]).map((x,i)=>`<div class="row"><input class="xn" data-i="${i}" placeholder="Extra name" value="${esc(x.name)}"><input class="xp" data-i="${i}" inputmode="numeric" placeholder="EGP" value="${esc(x.price)}" style="max-width:90px"><select class="xu" data-i="${i}">${Object.keys(UN).map(k=>`<option value="${k}" ${x.unit===k?"selected":""}>${UN[k]}</option>`).join("")}</select><button class="btn sm ghost" data-act="delextra" data-v="${i}">×</button></div>`).join("")}
+<div class="row"><button class="btn ghost" data-act="addextra">+ Add extra</button><button class="btn" data-act="savebook">Save booking options</button></div>
+<h4>Currencies <small>(EGP per 1 unit)</small></h4>${(D.currencies||[]).map(c=>`<div class="tr"><span>${esc(c.code)} · ${esc(c.symbol)}</span><span><input class="rt" data-cc="${esc(c.code)}" inputmode="decimal" value="${esc(c.rate)}" ${c.code==="EGP"?"disabled":""} style="width:90px;display:inline-block;margin:0"> ${c.code!=="EGP"?`<button class="btn sm ghost" data-act="delcur" data-v="${esc(c.code)}">×</button>`:""}</span></div>`).join("")}
+<div class="row" style="margin-top:8px"><input id="ncode" placeholder="Code (GBP)"><input id="nsym" placeholder="Symbol (£)"><input id="nrate" inputmode="decimal" placeholder="EGP per 1"><button class="btn" data-act="addcur">Add</button></div>
+<div class="row"><button class="btn" data-act="saverates">Save rates</button></div>
+<h4>Categories</h4><div class="row">${D.categories.map(c=>`<span class="tag">${esc(c)} <button data-act="delc" data-v="${esc(c)}">×</button></span>`).join("")}</div>
+<input id="nc" placeholder="Category name (new, or existing to change its icon)"><input id="ci" placeholder="Icon image link (PNG/SVG, transparent background)">
+<div class="row"><label class="btn ghost sm" style="cursor:pointer">Upload icon<input id="cf" type="file" accept="image/*" hidden></label><span id="cfn" style="font-size:14px"></span><button class="btn" data-act="addc">Add / update</button></div>
+<div class="note">Icons are shown in gold automatically. Existing name + empty icon = back to the default icon.</div>
+<h4>Trips</h4>${D.trips.map(t=>`<div class="tr"><span>${esc(t.name)}</span><span><button class="btn sm ghost" data-act="edit" data-v="${esc(t.id)}">Edit</button> <button class="btn sm ghost" data-act="deltrip" data-v="${esc(t.id)}">Delete</button></span></div>`).join("")}
+<h4>${e.id?"Edit trip":"Add trip"}</h4>
+<input id="tn" placeholder="Name (e.g. Hurghada)" value="${esc(e.name)}"><input id="td" placeholder="Short description (e.g. Beach · Red Sea)" value="${esc(e.desc)}"><textarea id="ta" rows="3" placeholder="About the trip (optional)">${esc(e.about)}</textarea>
+<div class="row"><input id="tr" inputmode="decimal" placeholder="Rating 4.8" value="${esc(e.rating)}"><input id="tc" inputmode="numeric" placeholder="Reviews" value="${esc(e.reviews)}"><input id="tp" inputmode="numeric" placeholder="EGP / night" value="${esc(e.price)}"></div>
+<div class="guide-box"><b>🧭 Tour guide</b>
+<label><input type="checkbox" id="tgen" ${(e.guide&&e.guide.enabled)?"checked":""}> Enable guide</label>
+<input id="tgn" placeholder="Guide name" value="${esc((e.guide&&e.guide.name)||"")}">
+<div class="row"><input id="tgp" inputmode="numeric" placeholder="Guide price (EGP)" value="${esc((e.guide&&e.guide.price)||0)}">
+<select id="tgu"><option value="per day">Per day</option><option value="per trip">Per trip</option><option value="per person">Per person</option></select></div></div>
+<div class="row"><input id="tla" inputmode="decimal" placeholder="Latitude (for map)" value="${esc(e.lat)}"><input id="tlo" inputmode="decimal" placeholder="Longitude (for map)" value="${esc(e.lng)}"></div>
+<div class="row">${D.categories.map(c=>`<label><input type="checkbox" name="tcat" value="${esc(c)}" ${(e.categories||[]).includes(c)?"checked":""}> ${esc(c)}</label>`).join("")}</div>
+<label><input type="checkbox" id="tft" ${e.featured?"checked":""}> Show in the banner slider</label>
+<textarea id="ti" rows="4" placeholder="Image links — one per line (https://… or images/photo.jpg)">${esc((e.images||[]).join("\n"))}</textarea>
+<div class="row"><button class="btn" data-act="savetrip">${e.id?"Update trip":"Add trip"}</button>${e.id?`<button class="btn ghost" data-act="cancel">Cancel</button>`:""}</div>
+<h4>Stories <small>(Explore Egypt your way)</small></h4>${(D.stories||[]).map(x=>`<div class="tr"><span>${esc(x.title)}</span><span><button class="btn sm ghost" data-act="editst" data-v="${esc(x.id)}">Edit</button> <button class="btn sm ghost" data-act="delst" data-v="${esc(x.id)}">Delete</button></span></div>`).join("")}
+<h4>${s.id?"Edit story":"Add story"}</h4>
+<input id="sgt" placeholder="Tag (e.g. Desert)" value="${esc(s.tag)}"><input id="sgn" placeholder="Title" value="${esc(s.title)}"><textarea id="sgx" rows="3" placeholder="Text">${esc(s.text)}</textarea><input id="sgi" placeholder="Image link" value="${esc(s.image)}"><input id="sgl" placeholder="Read-more link (optional)" value="${esc(s.link)}">
+<select id="sgr"><option value="">Link to a trip (optional)</option>${D.trips.map(t=>`<option value="${esc(t.id)}" ${s.tripId===t.id?"selected":""}>${esc(t.name)}</option>`).join("")}</select>
+<div class="row"><button class="btn" data-act="savest">${s.id?"Update story":"Add story"}</button>${s.id?`<button class="btn ghost" data-act="cancel">Cancel</button>`:""}</div>
+<h4>Live Egypt events</h4>${(D.events||[]).map(x=>`<div class="tr"><span>${esc(x.title)}</span><span><button class="btn sm ghost" data-act="editevent" data-v="${esc(x.id)}">Edit</button> <button class="btn sm ghost" data-act="delevent" data-v="${esc(x.id)}">Delete</button></span></div>`).join("")}
+<h4 id="eventFormTitle">Add event card</h4><input id="evcat" placeholder="Category label (e.g. Sustainability)"><input id="evtitle" placeholder="Event title"><input id="evloc" placeholder="Location (e.g. Aswan, Egypt)"><textarea id="evdesc" rows="2" placeholder="Short event description"></textarea><input id="evimg" placeholder="Image URL"><input id="evlink" placeholder="Find out more URL (optional)"><div class="row"><button class="btn" data-act="saveevent">Add event</button><button class="btn ghost" data-act="cancelevent" hidden>Cancel edit</button></div>
+
+<h4>Cafés & Activities</h4>
+${(D.places||[]).map(x=>`<div class="tr"><span>${esc(x.name)} · ${esc(x.type||"Place")}</span><span><button class="btn sm ghost" data-act="editplace" data-v="${esc(x.id)}">Edit</button> <button class="btn sm ghost" data-act="delplace" data-v="${esc(x.id)}">Delete</button></span></div>`).join("")}
+<h4>${ev.id&&false?"":"Add / edit place"}</h4>
+<input id="pltype" placeholder="Type: Café / Activity / Entertainment">
+<input id="plname" placeholder="Place name">
+<input id="plloc" placeholder="Location">
+<textarea id="pldesc" rows="2" placeholder="Description"></textarea>
+<div class="row"><input id="plprice" inputmode="numeric" placeholder="Price (EGP)"><input id="plimg" placeholder="Image URL"></div>
+<textarea id="pldet" rows="3" placeholder="More details (shown in the Details window)"></textarea>
+<textarea id="plinfo" rows="3" placeholder="Extra info — one per line, e.g. Opening hours: 9 AM – 11 PM"></textarea>
+<textarea id="plimgs" rows="2" placeholder="More image links — one per line"></textarea>
+<input id="plmap" placeholder="Map link (optional)">
+<div class="row"><button class="btn" data-act="saveplace">Save place</button><button class="btn ghost" data-act="cancelplace" hidden>Cancel edit</button></div>
+<h4>Data file</h4><div class="row"><button class="btn" data-act="dl">Download data.json</button><button class="btn ghost" data-act="discard">Discard draft & reload from file</button></div>
+<div class="row"><button class="btn ghost" data-act="exit">Exit dev mode</button></div>`;$("ov").hidden=false;$("cf").onchange=()=>{$("cfn").textContent=$("cf").files[0]?$("cf").files[0].name:""};if(e.guide&&e.guide.unit&&$("tgu"))$("tgu").value=e.guide.unit;
+if(placeId){$("pltype").value=pl.type||"";$("plname").value=pl.name||"";$("plloc").value=pl.location||"";$("pldesc").value=pl.description||"";$("plprice").value=pl.price||0;$("plimg").value=pl.image||"";$("pldet").value=pl.details||"";$("plinfo").value=(pl.info||[]).join("\n");$("plimgs").value=(pl.images||[]).join("\n");$("plmap").value=pl.map||"";$("box").dataset.editplace=pl.id;$("box").querySelector('[data-act="saveplace"]').textContent="Update place";$("box").querySelector('[data-act="cancelplace"]').hidden=false}
+if(ev.id){$("evcat").value=ev.category||"";$("evtitle").value=ev.title||"";$("evloc").value=ev.location||"";$("evdesc").value=ev.description||"";$("evimg").value=ev.image||"";$("evlink").value=ev.link||"";$("eventFormTitle").textContent="Edit event card";$("box").querySelector('[data-act="saveevent"]').textContent="Update event";$("box").querySelector('[data-act="cancelevent"]').hidden=false}}
+function iconFile(f){return new Promise(r=>{const i=new Image;i.onerror=()=>r("");i.onload=()=>{const S=96,iw=i.width||S,ih=i.height||S,k=Math.min(S/iw,S/ih),w=Math.max(1,Math.round(iw*k)),h=Math.max(1,Math.round(ih*k));
+const c=document.createElement("canvas");c.width=w;c.height=h;const x=c.getContext("2d");x.drawImage(i,0,0,w,h);const d=x.getImageData(0,0,w,h),p=d.data;let op=true;for(let j=3;j<p.length;j+=4)if(p[j]<250){op=false;break}
+if(op){for(let j=0;j<p.length;j+=4){const l=p[j]*.299+p[j+1]*.587+p[j+2]*.114;p[j]=p[j+1]=p[j+2]=0;p[j+3]=255-l}x.putImageData(d,0,0)}
+const c2=document.createElement("canvas");c2.width=c2.height=S;c2.getContext("2d").drawImage(c,(S-w)/2,(S-h)/2);r(c2.toDataURL("image/png"))};i.src=URL.createObjectURL(f)})}
+function collectBook(){D.booking=D.booking||{};const raw=$("bkcp").value.trim();D.booking.childPct=raw===""?50:Math.min(100,num(raw));D.booking.basis=$("bkbasis").value;
+$("box").querySelectorAll(".xn").forEach(e=>{const i=+e.dataset.i,x=(D.extras||[])[i];if(!x)return;x.name=e.value.trim()||"Extra";x.price=num($("box").querySelector('.xp[data-i="'+i+'"]').value);x.unit=$("box").querySelector('.xu[data-i="'+i+'"]').value})}
+const ll=id=>{const n=parseFloat(en($(id).value));return isFinite(n)?n:null};
+const num=s=>Number(en(s).replace(/[^\d.]/g,""))||0;
+$("gear").onclick=()=>admin?panel():login();
+$("box").onclick=async ev=>{const el=ev.target.closest("[data-act],[data-s],[data-d],[data-bk]");if(!el)return;const d=el.dataset,a=d.act;
+if(d.bk){bkStep(d.bk);return}
+if(d.s&&cur)return cur.go(cur.i()+Number(d.s));
+if(d.d&&cur)return cur.go(Number(d.d));
+if(a==="close")closeOv();
+else if(a==="details"){const w=$("bkw");w.hidden=!w.hidden;el.textContent=w.hidden?"Details":"Hide details";el.setAttribute("aria-expanded",String(!w.hidden));if(!w.hidden)setTimeout(()=>w.scrollIntoView({behavior:"smooth",block:"nearest"}),60)}
+else if(a==="book"&&cur)book(cur.t);
+else if(a==="placewa")inquirePlace(d.v);
+else if(a==="placemap"){if(/^https?:\/\//i.test(d.v))window.open(d.v,"_blank","noopener")}
+else if(a==="go")tryLogin();
+else if(a==="savewa"){D.whatsapp=en($("wan").value).replace(/\D/g,"");persist();panel();alert("Saved ✓")}
+else if(a==="savevid"){D.video={enabled:$("vden").checked,url:$("vdu").value.trim(),title:$("vdt").value.trim(),text:$("vdx").value.trim(),button:$("vdb").value.trim()};persist();panel();render();alert("Saved ✓")}
+else if(a==="editst")panel(undefined,d.v);
+else if(a==="delst"){if(!confirm("Delete this story?"))return;D.stories=D.stories.filter(x=>x.id!==d.v);persist();panel();render()}
+else if(a==="savest"){const title=$("sgn").value.trim();if(!title)return alert("Enter a title");const eid=$("box").dataset.editst;
+const st={id:eid||"st-"+Date.now().toString(36),tag:$("sgt").value.trim(),title,text:$("sgx").value.trim(),image:$("sgi").value.trim(),link:$("sgl").value.trim(),tripId:$("sgr").value};
+D.stories=D.stories||[];const i=D.stories.findIndex(x=>x.id===eid);i>-1?D.stories[i]=st:D.stories.push(st);persist();panel();render();alert(eid?"Updated ✓":"Story added ✓")}
+
+else if(a==="editplace")panel(undefined,undefined,undefined,d.v);
+else if(a==="cancelplace")panel();
+else if(a==="delplace"){if(!confirm("Delete this place?"))return;D.places=(D.places||[]).filter(x=>x.id!==d.v);persist();panel();render()}
+else if(a==="saveplace"){
+  const name=$("plname").value.trim(); if(!name)return alert("Enter a place name");
+  const eid=$("box").dataset.editplace;
+  const item={id:eid||"place-"+Date.now().toString(36),type:$("pltype").value.trim()||"Activity",name,location:$("plloc").value.trim()||"Egypt",description:$("pldesc").value.trim(),price:Math.round(num($("plprice").value)),image:$("plimg").value.trim(),details:$("pldet").value.trim(),info:$("plinfo").value.split("\n").map(s=>s.trim()).filter(Boolean),images:$("plimgs").value.split("\n").map(s=>s.trim()).filter(Boolean),map:$("plmap").value.trim()};
+  D.places=D.places||[];const i=D.places.findIndex(x=>x.id===eid);i>-1?D.places[i]=item:D.places.push(item);
+  persist();panel();render();alert(eid?"Place updated ✓":"Place added ✓")
+}
+
+else if(a==="editevent")panel(undefined,undefined,d.v);
+else if(a==="cancelevent")panel();
+else if(a==="delevent"){if(!confirm("Delete this event card?"))return;D.events=(D.events||[]).filter(x=>x.id!==d.v);persist();panel();render()}
+else if(a==="saveevent"){const title=$("evtitle").value.trim();if(!title)return alert("Enter an event title");const eid=$("box").dataset.editevent;const item={id:eid||"event-"+Date.now().toString(36),category:$("evcat").value.trim(),title,location:$("evloc").value.trim(),description:$("evdesc").value.trim(),image:$("evimg").value.trim(),link:$("evlink").value.trim()};D.events=D.events||[];const i=D.events.findIndex(x=>x.id===eid);i>-1?D.events[i]=item:D.events.push(item);persist();panel();render();alert(eid?"Event updated ✓":"Event card added ✓")}
+else if(a==="storytrip")openTrip(d.v);
+else if(a==="storylink"){if(/^https?:\/\//i.test(d.v))window.open(d.v,"_blank","noopener")}
+else if(a==="savebook"){collectBook();persist();panel();alert("Saved ✓")}
+else if(a==="addextra"){collectBook();D.extras.push({id:"x"+Date.now().toString(36),name:"New extra",price:0,unit:"trip"});persist();panel()}
+else if(a==="delextra"){collectBook();D.extras.splice(+d.v,1);persist();panel()}
+else if(a==="saverates"){$("box").querySelectorAll(".rt:not([disabled])").forEach(i=>{const c=D.currencies.find(x=>x.code===i.dataset.cc),r=num(i.value);if(c&&r>0)c.rate=r});persist();panel();render();alert("Rates saved ✓")}
+else if(a==="addcur"){const code=$("ncode").value.trim().toUpperCase(),sym=$("nsym").value.trim()||code,r=num($("nrate").value);if(!code||!(r>0)||D.currencies.some(c=>c.code===code))return alert("Enter a new code and a rate");D.currencies.push({code,symbol:sym,rate:r});persist();panel();render()}
+else if(a==="delcur"){D.currencies=D.currencies.filter(c=>c.code!==d.v);persist();panel();render()}
+else if(a==="addc"){const v=$("nc").value.trim();if(!v)return;let ic=$("ci").value.trim();const f=$("cf").files[0];if(f)ic=await iconFile(f);
+const ex=D.categories.includes(v);if(!ex)D.categories.push(v);D.catIcons=D.catIcons||{};if(ic)D.catIcons[v]=ic;else if(ex)delete D.catIcons[v];persist();panel();render()}
+else if(a==="delc"){if(!confirm("Delete category "+d.v+"?"))return;D.categories=D.categories.filter(c=>c!==d.v);if(D.catIcons)delete D.catIcons[d.v];D.trips.forEach(t=>t.categories=(t.categories||[]).filter(c=>c!==d.v));persist();panel();render()}
+else if(a==="edit")panel(d.v);
+else if(a==="cancel")panel();
+else if(a==="deltrip"){if(!confirm("Delete this trip?"))return;D.trips=D.trips.filter(t=>t.id!==d.v);persist();panel();render()}
+else if(a==="savetrip"){const name=$("tn").value.trim();if(!name)return alert("Enter a name");const eid=$("box").dataset.edit;
+const t={id:eid||(name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"trip")+"-"+Date.now().toString(36),name,desc:$("td").value.trim(),about:$("ta").value.trim(),rating:num($("tr").value)||4.5,reviews:Math.round(num($("tc").value)),price:Math.round(num($("tp").value))||1000,categories:[...$("box").querySelectorAll("[name=tcat]:checked")].map(x=>x.value),images:$("ti").value.split("\n").map(s=>s.trim()).filter(Boolean),lat:ll("tla"),lng:ll("tlo"),featured:$("tft").checked,guide:{enabled:$("tgen").checked,name:$("tgn").value.trim(),price:Math.round(num($("tgp").value)),unit:$("tgu").value}};
+if(!t.desc)t.desc=t.categories.join(" · ");
+const i=D.trips.findIndex(x=>x.id===eid);i>-1?D.trips[i]=t:D.trips.push(t);persist();panel();render();alert(eid?"Updated ✓":"Trip added ✓")}
+else if(a==="dl"){const b=new Blob([JSON.stringify(D,null,2)],{type:"application/json"}),l=document.createElement("a");l.href=URL.createObjectURL(b);l.download="data.json";document.body.appendChild(l);l.click();l.remove()}
+else if(a==="discard"){if(!confirm("Discard changes made in this browser?"))return;localStorage.removeItem("masrgo_draft");await init();panel()}
+else if(a==="exit"){admin=false;closeOv()}};
+(function(){const h=document.getElementById("siteHeader");if(!h)return;let last=scrollY||0,busy=false;addEventListener("scroll",()=>{if(busy)return;busy=true;requestAnimationFrame(()=>{const y=scrollY||0;if(y>80&&y>last+4)h.classList.add("header-hidden");else if(y<last-4||y<=30)h.classList.remove("header-hidden");last=y;busy=false})},{passive:true})})();
+init();
+</script></body></html>
